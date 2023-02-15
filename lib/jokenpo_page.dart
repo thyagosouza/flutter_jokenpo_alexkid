@@ -1,7 +1,6 @@
 import 'dart:async';
 import 'dart:math';
 import 'package:audioplayers/audioplayers.dart';
-//import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
 import 'package:jokenpo_alexkidd/widget/animation_widget.dart';
 
@@ -14,6 +13,8 @@ class JokenpoPage extends StatefulWidget {
 
 class _JokenpoPageState extends State<JokenpoPage> {
   AudioPlayer player = AudioPlayer();
+  final String pathImage = 'assets/images/app/';
+
   var _cloudEmptyBoss =
       const AssetImage('assets/images/app/cloud_result/cloud_result.png');
   var _cloudEmptyBossResult =
@@ -48,8 +49,8 @@ class _JokenpoPageState extends State<JokenpoPage> {
           setState(
             () {
               //
-              _cloudEmptyBossResult = const AssetImage(
-                  "assets/images/app/cloud_result/cloud_pedra_result.png");
+              _cloudEmptyBossResult =
+                  AssetImage("${pathImage}cloud_result/cloud_pedra_result.png");
               _escolhaResultBoss = 'pedra';
             },
           );
@@ -57,15 +58,15 @@ class _JokenpoPageState extends State<JokenpoPage> {
 
         case "papel":
           setState(() {
-            _cloudEmptyBossResult = const AssetImage(
-                "assets/images/app/cloud_result/cloud_papel_result.png");
+            _cloudEmptyBossResult =
+                AssetImage("${pathImage}cloud_result/cloud_papel_result.png");
             _escolhaResultBoss = 'papel';
           });
           break;
         case "tesoura":
           setState(() {
-            _cloudEmptyBossResult = const AssetImage(
-                "assets/images/app/cloud_result/cloud_tesoura_result.png");
+            _cloudEmptyBossResult =
+                AssetImage("${pathImage}cloud_result/cloud_tesoura_result.png");
             _escolhaResultBoss = 'tesoura';
           });
           break;
@@ -123,16 +124,16 @@ class _JokenpoPageState extends State<JokenpoPage> {
           children: [
             Positioned.fill(
               child: Image.asset(
-                'assets/images/app/background.png',
+                '${pathImage}background.png',
                 fit: BoxFit.cover,
               ),
             ),
             Visibility(
               visible: !_jogoIniciado,
               child: Container(
-                alignment: Alignment(-0.75, 0.24),
+                alignment: const Alignment(-0.75, 0.24),
                 child: Image.asset(
-                  'assets/images/app/alex_kidd/dancing/02_trans.png',
+                  '${pathImage}alex_kidd/dancing/02_trans.png',
                   fit: BoxFit.cover,
                 ),
               ),
@@ -144,7 +145,7 @@ class _JokenpoPageState extends State<JokenpoPage> {
                 child: Container(
                   height: 90,
                   width: 90,
-                  alignment: Alignment(-0.75, 0.24),
+                  alignment: const Alignment(-0.75, 0.24),
                   child: _isAnimation == true
                       ? alexKiddDancing
                       : alexKiddPreparando,
@@ -154,9 +155,9 @@ class _JokenpoPageState extends State<JokenpoPage> {
             Visibility(
               visible: _cloudMsgResult,
               child: Container(
-                alignment: Alignment(-0.74, 0.26),
+                alignment: const Alignment(-0.74, 0.26),
                 child: Image.asset(
-                  'assets/images/app/alex_kidd/result/${_escolhaResult}_trans.png',
+                  '${pathImage}alex_kidd/result/${_escolhaResult}_trans.png',
                   fit: BoxFit.cover,
                 ),
               ),
@@ -166,9 +167,9 @@ class _JokenpoPageState extends State<JokenpoPage> {
               child: Padding(
                 padding: const EdgeInsets.only(top: 0, left: 253),
                 child: Container(
-                  alignment: Alignment(-0.74, 0.225),
+                  alignment: const Alignment(-0.74, 0.225),
                   child: Image.asset(
-                    'assets/images/app/boss_01/boss_resultado/${_escolhaResultBoss}_trans.png',
+                    '${pathImage}boss_01/boss_resultado/${_escolhaResultBoss}_trans.png',
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -177,9 +178,9 @@ class _JokenpoPageState extends State<JokenpoPage> {
             Visibility(
               visible: !_jogoIniciado,
               child: Container(
-                alignment: Alignment(0.79, 0.225),
+                alignment: const Alignment(0.79, 0.225),
                 child: Image.asset(
-                  'assets/images/app/boss_01/boss_dancing/02_trans.png',
+                  '${pathImage}boss_01/boss_dancing/02_trans.png',
                   fit: BoxFit.cover,
                 ),
               ),
@@ -189,7 +190,7 @@ class _JokenpoPageState extends State<JokenpoPage> {
               child: Padding(
                 padding: const EdgeInsets.only(top: 0, left: 40),
                 child: Container(
-                  alignment: Alignment(0.75, 0.225),
+                  alignment: const Alignment(0.75, 0.225),
                   child: _isAnimation == true
                       ? Padding(
                           padding: const EdgeInsets.only(left: 20.0),
@@ -203,7 +204,7 @@ class _JokenpoPageState extends State<JokenpoPage> {
             Container(
               alignment: Alignment(0.79, 0.225),
               child: Image.asset(
-                'assets/images/app/boss_01/boss_dancing/02_trans.png',
+                '${pathImage}boss_01/boss_dancing/02_trans.png',
                 fit: BoxFit.cover,
               ),
             ),*/
@@ -211,7 +212,7 @@ class _JokenpoPageState extends State<JokenpoPage> {
             Visibility(
               visible: _cloudBoss,
               child: Container(
-                alignment: Alignment(0.79, -0.2),
+                alignment: const Alignment(0.79, -0.2),
                 child: Image(
                   image: _cloudEmptyBoss,
                 ),
@@ -220,14 +221,14 @@ class _JokenpoPageState extends State<JokenpoPage> {
             Visibility(
               visible: _cloudBossResult,
               child: Container(
-                alignment: Alignment(0.70, -0.19),
+                alignment: const Alignment(0.70, -0.19),
                 child: Image(
                   image: _cloudEmptyBossResult,
                 ),
               ),
             ),
             Container(
-              alignment: Alignment(-0.75, -0.2),
+              alignment: const Alignment(-0.75, -0.2),
               child: Image(
                 image: _cloudEmptyPlayer,
               ),
@@ -235,7 +236,7 @@ class _JokenpoPageState extends State<JokenpoPage> {
             Visibility(
               visible: _cloudBoss,
               child: Container(
-                alignment: Alignment(-0.67, -0.2),
+                alignment: const Alignment(-0.67, -0.2),
                 child: Image(
                   image: _cloudEmptyPlayerResult,
                 ),
@@ -253,7 +254,7 @@ class _JokenpoPageState extends State<JokenpoPage> {
                   child: Center(
                     child: Text(
                       _msgResultado,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                           color: Colors.white,
@@ -264,7 +265,7 @@ class _JokenpoPageState extends State<JokenpoPage> {
               ),
             ),
             Container(
-              alignment: Alignment(0, 0.9),
+              alignment: const Alignment(0, 0.9),
               child: AbsorbPointer(
                 absorbing: _jogoIniciado,
                 child: Row(
@@ -283,7 +284,7 @@ class _JokenpoPageState extends State<JokenpoPage> {
                         _jogoIniciado = true;
                         _cloudBoss = true;
                         _cloudEmptyPlayerResult = AssetImage(
-                            'assets/images/app/cloud_result/cloud_pedra_result.png');
+                            '${pathImage}cloud_result/cloud_pedra_result.png');
                         _isAnimation = true;
                         animationFalse();
 
@@ -311,7 +312,7 @@ class _JokenpoPageState extends State<JokenpoPage> {
                         _jogoIniciado = true;
                         _cloudBoss = true;
                         _cloudEmptyPlayerResult = AssetImage(
-                            'assets/images/app/cloud_result/cloud_papel_result.png');
+                            '${pathImage}cloud_result/cloud_papel_result.png');
                         _isAnimation = true;
                         animationFalse();
                         fimJogoIniciado();
@@ -338,7 +339,7 @@ class _JokenpoPageState extends State<JokenpoPage> {
                         _isDancing = true;
                         _cloudBoss = true;
                         _cloudEmptyPlayerResult = AssetImage(
-                            'assets/images/app/cloud_result/cloud_tesoura_result.png');
+                            '${pathImage}cloud_result/cloud_tesoura_result.png');
                         _isAnimation = true;
                         animationFalse();
                         fimJogoIniciado();
@@ -390,9 +391,9 @@ class _JokenpoPageState extends State<JokenpoPage> {
         _isDancing = false;
         _isAnimation = false;
         _cloudEmptyBoss =
-            AssetImage('assets/images/app/cloud_result/cloud_result.png');
+            AssetImage('${pathImage}cloud_result/cloud_result.png');
         _cloudEmptyPlayer =
-            AssetImage('assets/images/app/cloud_result/cloud_result.png');
+            AssetImage('${pathImage}cloud_result/cloud_result.png');
         _msgResultado = '';
       });
     });
