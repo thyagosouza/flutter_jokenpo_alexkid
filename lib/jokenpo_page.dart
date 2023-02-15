@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:math';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
+import 'package:jokenpo_alexkidd/core/ui/helpers/size_extensions.dart';
 import 'package:jokenpo_alexkidd/widget/animation_widget.dart';
 
 class JokenpoPage extends StatefulWidget {
@@ -105,16 +106,16 @@ class _JokenpoPageState extends State<JokenpoPage> {
     });
   }
 
-  var alexKiddDancing =
-      const AnimationWidget(millSeconds: 800, path: 'alex_kidd/dancing/');
-  var alexKiddPreparando =
-      const AnimationWidget(millSeconds: 300, path: 'alex_kidd/preparando/');
-  var bossDancing =
-      const AnimationWidget(millSeconds: 800, path: 'boss_01/boss_dancing/');
-  var bossPreparando =
-      const AnimationWidget(millSeconds: 700, path: 'boss_01/boss_preparando/');
   @override
   Widget build(BuildContext context) {
+    var alexKiddDancing =
+        AnimationWidget(millSeconds: 800, path: 'alex_kidd/dancing/');
+    var alexKiddPreparando =
+        AnimationWidget(millSeconds: 300, path: 'alex_kidd/preparando/');
+    var bossDancing =
+        AnimationWidget(millSeconds: 800, path: 'boss_01/boss_dancing/');
+    var bossPreparando =
+        AnimationWidget(millSeconds: 700, path: 'boss_01/boss_preparando/');
     return Scaffold(
       body: Container(
         color: Colors.amber,
@@ -122,16 +123,23 @@ class _JokenpoPageState extends State<JokenpoPage> {
         width: double.maxFinite,
         child: Stack(
           children: [
-            Positioned.fill(
-              child: Image.asset(
-                '${pathImage}background.png',
-                fit: BoxFit.cover,
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: SizedBox(
+                width: context.sWidth,
+                child: Image.asset(
+                  '${pathImage}background.png',
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
             Visibility(
               visible: !_jogoIniciado,
               child: Container(
-                alignment: const Alignment(-0.75, 0.24),
+                alignment: Alignment(
+                  context.percentWidth(-.0019),
+                  context.percentHeight(.00030),
+                ),
                 child: Image.asset(
                   '${pathImage}alex_kidd/dancing/02_trans.png',
                   fit: BoxFit.cover,
@@ -140,22 +148,22 @@ class _JokenpoPageState extends State<JokenpoPage> {
             ),
             Visibility(
               visible: _isDancing,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 442, left: 37),
-                child: Container(
-                  height: 90,
-                  width: 90,
-                  alignment: const Alignment(-0.75, 0.24),
-                  child: _isAnimation == true
-                      ? alexKiddDancing
-                      : alexKiddPreparando,
+              child: Container(
+                alignment: Alignment(
+                  context.percentWidth(-.0019),
+                  context.percentHeight(.00030),
                 ),
+                child:
+                    _isAnimation == true ? alexKiddDancing : alexKiddPreparando,
               ),
             ),
             Visibility(
               visible: _cloudMsgResult,
               child: Container(
-                alignment: const Alignment(-0.74, 0.26),
+                alignment: Alignment(
+                  context.percentWidth(-.0019),
+                  context.percentHeight(.000325),
+                ),
                 child: Image.asset(
                   '${pathImage}alex_kidd/result/${_escolhaResult}_trans.png',
                   fit: BoxFit.cover,
@@ -163,22 +171,12 @@ class _JokenpoPageState extends State<JokenpoPage> {
               ),
             ),
             Visibility(
-              visible: _cloudMsgResult,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 0, left: 253),
-                child: Container(
-                  alignment: const Alignment(-0.74, 0.225),
-                  child: Image.asset(
-                    '${pathImage}boss_01/boss_resultado/${_escolhaResultBoss}_trans.png',
-                    fit: BoxFit.cover,
-                  ),
-                ),
-              ),
-            ),
-            Visibility(
               visible: !_jogoIniciado,
               child: Container(
-                alignment: const Alignment(0.79, 0.225),
+                alignment: Alignment(
+                  context.percentWidth(.0020),
+                  context.percentHeight(.00028),
+                ),
                 child: Image.asset(
                   '${pathImage}boss_01/boss_dancing/02_trans.png',
                   fit: BoxFit.cover,
@@ -187,16 +185,24 @@ class _JokenpoPageState extends State<JokenpoPage> {
             ),
             Visibility(
               visible: _isDancing,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 0, left: 40),
-                child: Container(
-                  alignment: const Alignment(0.75, 0.225),
-                  child: _isAnimation == true
-                      ? Padding(
-                          padding: const EdgeInsets.only(left: 20.0),
-                          child: bossDancing,
-                        )
-                      : bossPreparando,
+              child: Container(
+                alignment: Alignment(
+                  context.percentWidth(.0020),
+                  context.percentHeight(.00028),
+                ),
+                child: _isAnimation == true ? bossDancing : bossPreparando,
+              ),
+            ),
+            Visibility(
+              visible: _cloudMsgResult,
+              child: Container(
+                alignment: Alignment(
+                  context.percentWidth(.0019),
+                  context.percentHeight(.00028),
+                ),
+                child: Image.asset(
+                  '${pathImage}boss_01/boss_resultado/${_escolhaResultBoss}_trans.png',
+                  fit: BoxFit.cover,
                 ),
               ),
             ),
@@ -371,7 +377,7 @@ class _JokenpoPageState extends State<JokenpoPage> {
   }
 
   void animationFalse() {
-    Future.delayed(Duration(milliseconds: 8400), () {
+    Future.delayed(const Duration(milliseconds: 8400), () {
       setState(() {
         _isAnimation = false;
       });
@@ -379,7 +385,7 @@ class _JokenpoPageState extends State<JokenpoPage> {
   }
 
   void fimJogoIniciado() {
-    Timer(Duration(seconds: 15), () {
+    Timer(const Duration(seconds: 15), () {
       setState(() {
         _button1 = false;
         _button2 = false;
