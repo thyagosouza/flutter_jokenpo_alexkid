@@ -184,7 +184,7 @@ class _JokenpoPageState extends State<JokenpoPage> {
               ),
             ),
             Visibility(
-              visible: _isDancing,
+              visible: _isDancing && _jogoIniciado,
               child: Container(
                 alignment: Alignment(
                   context.percentWidth(.0020),
@@ -197,7 +197,7 @@ class _JokenpoPageState extends State<JokenpoPage> {
               visible: _cloudMsgResult,
               child: Container(
                 alignment: Alignment(
-                  context.percentWidth(.0019),
+                  context.percentWidth(.00194),
                   context.percentHeight(.00028),
                 ),
                 child: Image.asset(
