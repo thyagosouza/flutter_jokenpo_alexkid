@@ -1,15 +1,9 @@
 import 'dart:async';
 import 'dart:math';
-import 'dart:typed_data';
-import 'package:flutter/services.dart';
 import 'package:audioplayers/audioplayers.dart';
 //import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:flutter/material.dart';
-
-import 'alex_kidd_preparando.dart';
-import 'animation_image.dart';
-import 'boss_dancing.dart';
-import 'boss_preparando.dart';
+import 'package:jokenpo_alexkidd/widget/animation_widget.dart';
 
 class JokenpoPage extends StatefulWidget {
   const JokenpoPage({Key? key}) : super(key: key);
@@ -21,13 +15,13 @@ class JokenpoPage extends StatefulWidget {
 class _JokenpoPageState extends State<JokenpoPage> {
   AudioPlayer player = AudioPlayer();
   var _cloudEmptyBoss =
-      AssetImage('assets/images/app/cloud_result/cloud_result.png');
+      const AssetImage('assets/images/app/cloud_result/cloud_result.png');
   var _cloudEmptyBossResult =
-      AssetImage('assets/images/app/cloud_result/cloud_result_empty.png');
+      const AssetImage('assets/images/app/cloud_result/cloud_result_empty.png');
   var _cloudEmptyPlayer =
-      AssetImage('assets/images/app/cloud_result/cloud_result.png');
+      const AssetImage('assets/images/app/cloud_result/cloud_result.png');
   var _cloudEmptyPlayerResult =
-      AssetImage('assets/images/app/cloud_result/cloud_result_empty.png');
+      const AssetImage('assets/images/app/cloud_result/cloud_result_empty.png');
   var _escolhaResultBoss = '';
   String _msgResultado = '';
   String _escolhaResult = '';
@@ -48,13 +42,13 @@ class _JokenpoPageState extends State<JokenpoPage> {
     var escolhaBot = escolha[num];
 
     //Exibir imagem escolhida pela maquina
-    Timer(Duration(seconds: 10), () {
+    Timer(const Duration(seconds: 10), () {
       switch (escolhaBot) {
         case "pedra":
           setState(
             () {
               //
-              _cloudEmptyBossResult = AssetImage(
+              _cloudEmptyBossResult = const AssetImage(
                   "assets/images/app/cloud_result/cloud_pedra_result.png");
               _escolhaResultBoss = 'pedra';
             },
@@ -63,14 +57,14 @@ class _JokenpoPageState extends State<JokenpoPage> {
 
         case "papel":
           setState(() {
-            _cloudEmptyBossResult = AssetImage(
+            _cloudEmptyBossResult = const AssetImage(
                 "assets/images/app/cloud_result/cloud_papel_result.png");
             _escolhaResultBoss = 'papel';
           });
           break;
         case "tesoura":
           setState(() {
-            _cloudEmptyBossResult = AssetImage(
+            _cloudEmptyBossResult = const AssetImage(
                 "assets/images/app/cloud_result/cloud_tesoura_result.png");
             _escolhaResultBoss = 'tesoura';
           });
@@ -84,7 +78,7 @@ class _JokenpoPageState extends State<JokenpoPage> {
       if ((escolhaJogador == 'pedra' && escolhaBot == 'tesoura') ||
           (escolhaJogador == 'tesoura' && escolhaBot == 'papel') ||
           (escolhaJogador == 'papel' && escolhaBot == 'pedra')) {
-        Timer(Duration(seconds: 10), () {
+        Timer(const Duration(seconds: 10), () {
           _cloudBossResult = true;
           _cloudMsgResult = true;
           _msgResultado = 'YOU WIN!';
@@ -93,14 +87,14 @@ class _JokenpoPageState extends State<JokenpoPage> {
       } else if ((escolhaJogador == 'tesoura' && escolhaBot == 'pedra') ||
           (escolhaJogador == 'papel' && escolhaBot == 'tesoura') ||
           (escolhaJogador == 'pedra' && escolhaBot == 'papel')) {
-        Timer(Duration(seconds: 10), () {
+        Timer(const Duration(seconds: 10), () {
           _cloudBossResult = true;
           _cloudMsgResult = true;
           _msgResultado = "YOU LOSE!";
           _isDancing = false;
         });
       } else {
-        Timer(Duration(seconds: 10), () {
+        Timer(const Duration(seconds: 10), () {
           _cloudBossResult = true;
           _cloudMsgResult = true;
           _msgResultado = "DRAW!";
@@ -110,12 +104,16 @@ class _JokenpoPageState extends State<JokenpoPage> {
     });
   }
 
+  var alexKiddDancing =
+      const AnimationWidget(millSeconds: 800, path: 'alex_kidd/dancing/');
+  var alexKiddPreparando =
+      const AnimationWidget(millSeconds: 300, path: 'alex_kidd/preparando/');
+  var bossDancing =
+      const AnimationWidget(millSeconds: 800, path: 'boss_01/boss_dancing/');
+  var bossPreparando =
+      const AnimationWidget(millSeconds: 700, path: 'boss_01/boss_preparando/');
   @override
   Widget build(BuildContext context) {
-    var _alexKiddDancing = AlexKiddDancing();
-    var _alexKiddPreparando = AlexKiddPreparando();
-    var _bossDancing = BossDancing();
-    var _bossPreparando = BossPreparando();
     return Scaffold(
       body: Container(
         color: Colors.amber,
@@ -148,8 +146,8 @@ class _JokenpoPageState extends State<JokenpoPage> {
                   width: 90,
                   alignment: Alignment(-0.75, 0.24),
                   child: _isAnimation == true
-                      ? _alexKiddDancing
-                      : _alexKiddPreparando,
+                      ? alexKiddDancing
+                      : alexKiddPreparando,
                 ),
               ),
             ),
@@ -195,9 +193,9 @@ class _JokenpoPageState extends State<JokenpoPage> {
                   child: _isAnimation == true
                       ? Padding(
                           padding: const EdgeInsets.only(left: 20.0),
-                          child: _bossDancing,
+                          child: bossDancing,
                         )
-                      : _bossPreparando,
+                      : bossPreparando,
                 ),
               ),
             ),
