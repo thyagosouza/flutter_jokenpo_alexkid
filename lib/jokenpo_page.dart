@@ -134,7 +134,7 @@ class _JokenpoPageState extends State<JokenpoPage> {
                       child: Image.asset(
                         '${pathImage}background.png',
                         repeat: ImageRepeat.repeat,
-                        fit: BoxFit.cover,
+                        fit: BoxFit.contain,
                       ),
                     ),
                   ),
@@ -157,7 +157,7 @@ class _JokenpoPageState extends State<JokenpoPage> {
                     ),
                   ),
                   Align(
-                    alignment: Alignment(-.74, 1.05),
+                    alignment: Alignment(-.74, 1),
                     child: Visibility(
                       visible: _cloudMsgResult,
                       child: Image.asset(
@@ -205,32 +205,40 @@ class _JokenpoPageState extends State<JokenpoPage> {
                     alignment: const Alignment(0.79, 0.2),
                     child: Visibility(
                       visible: _cloudBoss,
-                      child: Image(
-                        image: _cloudEmptyBoss,
-                      ),
-                    ),
-                  ),
-                  Align(
-                    alignment: const Alignment(0.70, 0.19),
-                    child: Visibility(
-                      visible: _cloudBossResult,
-                      child: Image(
-                        image: _cloudEmptyBossResult,
+                      child: Container(
+                        width: 90,
+                        height: 90,
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: _cloudEmptyBoss,
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                        child: Visibility(
+                          visible: _cloudBossResult,
+                          child: Image(
+                            image: _cloudEmptyBossResult,
+                          ),
+                        ),
                       ),
                     ),
                   ),
                   Align(
                     alignment: const Alignment(-0.75, 0.2),
-                    child: Image(
-                      image: _cloudEmptyPlayer,
-                    ),
-                  ),
-                  Align(
-                    alignment: const Alignment(-0.67, 0.2),
-                    child: Visibility(
-                      visible: _cloudBoss,
-                      child: Image(
-                        image: _cloudEmptyPlayerResult,
+                    child: Container(
+                      width: 90,
+                      height: 90,
+                      decoration: BoxDecoration(
+                        image: DecorationImage(
+                          image: _cloudEmptyPlayer,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      child: Visibility(
+                        visible: _cloudBoss,
+                        child: Image(
+                          image: _cloudEmptyPlayerResult,
+                        ),
                       ),
                     ),
                   ),
