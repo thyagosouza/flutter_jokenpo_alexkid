@@ -118,254 +118,256 @@ class _JokenpoPageState extends State<JokenpoPage> {
         AnimationWidget(millSeconds: 700, path: 'boss_01/boss_preparando/');
     return Scaffold(
       body: Container(
-        color: Colors.amber,
+        color: Color(0xFF0402FC),
         height: double.maxFinite,
         width: double.maxFinite,
-        child: Stack(
+        child: Column(
           children: [
-            Align(
-              alignment: Alignment.bottomCenter,
-              child: SizedBox(
-                width: context.sWidth,
-                child: Image.asset(
-                  '${pathImage}background.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            Visibility(
-              visible: !_jogoIniciado,
-              child: Container(
-                alignment: Alignment(
-                  context.percentWidth(-.0019),
-                  context.percentHeight(.00030),
-                ),
-                child: Image.asset(
-                  '${pathImage}alex_kidd/dancing/02_trans.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            Visibility(
-              visible: _isDancing,
-              child: Container(
-                alignment: Alignment(
-                  context.percentWidth(-.0019),
-                  context.percentHeight(.00030),
-                ),
-                child:
-                    _isAnimation == true ? alexKiddDancing : alexKiddPreparando,
-              ),
-            ),
-            Visibility(
-              visible: _cloudMsgResult,
-              child: Container(
-                alignment: Alignment(
-                  context.percentWidth(-.0019),
-                  context.percentHeight(.000325),
-                ),
-                child: Image.asset(
-                  '${pathImage}alex_kidd/result/${_escolhaResult}_trans.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            Visibility(
-              visible: !_jogoIniciado,
-              child: Container(
-                alignment: Alignment(
-                  context.percentWidth(.0020),
-                  context.percentHeight(.00028),
-                ),
-                child: Image.asset(
-                  '${pathImage}boss_01/boss_dancing/02_trans.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            Visibility(
-              visible: _isDancing && _jogoIniciado,
-              child: Container(
-                alignment: Alignment(
-                  context.percentWidth(.0020),
-                  context.percentHeight(.00028),
-                ),
-                child: _isAnimation == true ? bossDancing : bossPreparando,
-              ),
-            ),
-            Visibility(
-              visible: _cloudMsgResult,
-              child: Container(
-                alignment: Alignment(
-                  context.percentWidth(.00194),
-                  context.percentHeight(.00028),
-                ),
-                child: Image.asset(
-                  '${pathImage}boss_01/boss_resultado/${_escolhaResultBoss}_trans.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
-            ),
-            /*
-            Container(
-              alignment: Alignment(0.79, 0.225),
-              child: Image.asset(
-                '${pathImage}boss_01/boss_dancing/02_trans.png',
-                fit: BoxFit.cover,
-              ),
-            ),*/
+            Expanded(
+              flex: 2,
+              child: Stack(
+                children: [
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: SizedBox(
+                      width: context.sWidth,
+                      child: Image.asset(
+                        '${pathImage}background.png',
+                        repeat: ImageRepeat.repeat,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment(-.75, 1),
+                    child: Visibility(
+                      visible: !_jogoIniciado,
+                      child: Image.asset(
+                        '${pathImage}alex_kidd/dancing/02_trans.png',
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment(-.75, 1),
+                    child: Visibility(
+                      visible: _isDancing,
+                      child: _isAnimation == true
+                          ? alexKiddDancing
+                          : alexKiddPreparando,
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment(-.74, 1.05),
+                    child: Visibility(
+                      visible: _cloudMsgResult,
+                      child: Image.asset(
+                        '${pathImage}alex_kidd/result/${_escolhaResult}_trans.png',
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment(.74, 1),
+                    child: Visibility(
+                      visible: !_jogoIniciado,
+                      child: Image.asset(
+                        '${pathImage}boss_01/boss_dancing/02_trans.png',
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment(.72, 1),
+                    child: Visibility(
+                      visible: _isDancing && _jogoIniciado,
+                      child:
+                          _isAnimation == true ? bossDancing : bossPreparando,
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment(.69, 1),
+                    child: Visibility(
+                      visible: _cloudMsgResult,
+                      child: Image.asset(
+                        '${pathImage}boss_01/boss_resultado/${_escolhaResultBoss}_trans.png',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  /*
+                  Container(
+                    alignment: Alignment(0.79, 0.225),
+                    child: Image.asset(
+                      '${pathImage}boss_01/boss_dancing/02_trans.png',
+                      fit: BoxFit.cover,
+                    ),
+                  ),*/
 
-            Visibility(
-              visible: _cloudBoss,
-              child: Container(
-                alignment: const Alignment(0.79, -0.2),
-                child: Image(
-                  image: _cloudEmptyBoss,
+                  Align(
+                    alignment: const Alignment(0.79, 0.2),
+                    child: Visibility(
+                      visible: _cloudBoss,
+                      child: Image(
+                        image: _cloudEmptyBoss,
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: const Alignment(0.70, 0.19),
+                    child: Visibility(
+                      visible: _cloudBossResult,
+                      child: Image(
+                        image: _cloudEmptyBossResult,
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: const Alignment(-0.75, 0.2),
+                    child: Image(
+                      image: _cloudEmptyPlayer,
+                    ),
+                  ),
+                  Align(
+                    alignment: const Alignment(-0.67, 0.2),
+                    child: Visibility(
+                      visible: _cloudBoss,
+                      child: Image(
+                        image: _cloudEmptyPlayerResult,
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment(0, -.2),
+                    child: Visibility(
+                      visible: _cloudMsgResult,
+                      child: Container(
+                        color: Colors.black,
+                        width: 250,
+                        height: 50,
+                        child: Center(
+                          child: Text(
+                            _msgResultado,
+                            style: const TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                fontFamily: 'AlexKidd'),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+                child: Stack(
+              children: [
+                SizedBox(
+                  width: context.sWidth,
+                  height: context.sHeight,
+                  child: Image.asset(
+                    '${pathImage}ground.png',
+                    repeat: ImageRepeat.repeat,
+                    fit: BoxFit.contain,
+                  ),
                 ),
-              ),
-            ),
-            Visibility(
-              visible: _cloudBossResult,
-              child: Container(
-                alignment: const Alignment(0.70, -0.19),
-                child: Image(
-                  image: _cloudEmptyBossResult,
-                ),
-              ),
-            ),
-            Container(
-              alignment: const Alignment(-0.75, -0.2),
-              child: Image(
-                image: _cloudEmptyPlayer,
-              ),
-            ),
-            Visibility(
-              visible: _cloudBoss,
-              child: Container(
-                alignment: const Alignment(-0.67, -0.2),
-                child: Image(
-                  image: _cloudEmptyPlayerResult,
-                ),
-              ),
-            ),
-            Visibility(
-              visible: _cloudMsgResult,
-              child: Padding(
-                padding: const EdgeInsets.only(top: 200, left: 70),
-                child: Container(
-                  // alignment: Alignment(0, 0.5),
-                  color: Colors.black,
-                  width: 250,
-                  height: 50,
-                  child: Center(
-                    child: Text(
-                      _msgResultado,
-                      style: const TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          fontFamily: 'AlexKidd'),
+                Align(
+                  alignment: const Alignment(.5, 0.1),
+                  child: AbsorbPointer(
+                    absorbing: _jogoIniciado,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      //  mainAxisSize: MainAxisSize.min,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            _button1 = true;
+                            // player.audioCache('sounds/sound_jokenpo.mp3');
+                            playerSound();
+                            _escolha('pedra');
+
+                            _isDancing = true;
+                            _escolhaResult = 'pedra';
+                            _jogoIniciado = true;
+                            _cloudBoss = true;
+                            _cloudEmptyPlayerResult = AssetImage(
+                                '${pathImage}cloud_result/cloud_pedra_result.png');
+                            _isAnimation = true;
+                            animationFalse();
+
+                            fimJogoIniciado();
+                          },
+                          child: _button2 || _button3 == true
+                              ? Opacity(
+                                  opacity: 0.4,
+                                  child: Image.asset(
+                                    'assets/images/rock.png',
+                                  ),
+                                )
+                              : Image.asset(
+                                  'assets/images/rock.png',
+                                  width: 100,
+                                ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            _button2 = true;
+                            playerSound();
+                            _escolha('papel');
+                            _isDancing = true;
+                            _escolhaResult = 'papel';
+                            _jogoIniciado = true;
+                            _cloudBoss = true;
+                            _cloudEmptyPlayerResult = AssetImage(
+                                '${pathImage}cloud_result/cloud_papel_result.png');
+                            _isAnimation = true;
+                            animationFalse();
+                            fimJogoIniciado();
+                          },
+                          child: _button1 || _button3 == true
+                              ? Opacity(
+                                  opacity: 0.4,
+                                  child: Image.asset(
+                                    'assets/images/paper.png',
+                                  ),
+                                )
+                              : Image.asset(
+                                  'assets/images/paper.png',
+                                  width: 100,
+                                ),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            _button3 = true;
+                            playerSound();
+                            _escolha('tesoura');
+                            _jogoIniciado = true;
+                            _escolhaResult = 'tesoura';
+                            _isDancing = true;
+                            _cloudBoss = true;
+                            _cloudEmptyPlayerResult = AssetImage(
+                                '${pathImage}cloud_result/cloud_tesoura_result.png');
+                            _isAnimation = true;
+                            animationFalse();
+                            fimJogoIniciado();
+                          },
+                          child: _button1 || _button2 == true
+                              ? Opacity(
+                                  opacity: 0.4,
+                                  child: Image.asset(
+                                    'assets/images/scissor.png',
+                                  ),
+                                )
+                              : Image.asset(
+                                  'assets/images/scissor.png',
+                                  width: 100,
+                                ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
-              ),
-            ),
-            Container(
-              alignment: const Alignment(0, 0.9),
-              child: AbsorbPointer(
-                absorbing: _jogoIniciado,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  //  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    GestureDetector(
-                      onTap: () {
-                        _button1 = true;
-                        // player.audioCache('sounds/sound_jokenpo.mp3');
-                        playerSound();
-                        _escolha('pedra');
-
-                        _isDancing = true;
-                        _escolhaResult = 'pedra';
-                        _jogoIniciado = true;
-                        _cloudBoss = true;
-                        _cloudEmptyPlayerResult = AssetImage(
-                            '${pathImage}cloud_result/cloud_pedra_result.png');
-                        _isAnimation = true;
-                        animationFalse();
-
-                        fimJogoIniciado();
-                      },
-                      child: _button2 || _button3 == true
-                          ? Opacity(
-                              opacity: 0.4,
-                              child: Image.asset(
-                                'assets/images/rock.png',
-                              ),
-                            )
-                          : Image.asset(
-                              'assets/images/rock.png',
-                              width: 100,
-                            ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        _button2 = true;
-                        playerSound();
-                        _escolha('papel');
-                        _isDancing = true;
-                        _escolhaResult = 'papel';
-                        _jogoIniciado = true;
-                        _cloudBoss = true;
-                        _cloudEmptyPlayerResult = AssetImage(
-                            '${pathImage}cloud_result/cloud_papel_result.png');
-                        _isAnimation = true;
-                        animationFalse();
-                        fimJogoIniciado();
-                      },
-                      child: _button1 || _button3 == true
-                          ? Opacity(
-                              opacity: 0.4,
-                              child: Image.asset(
-                                'assets/images/paper.png',
-                              ),
-                            )
-                          : Image.asset(
-                              'assets/images/paper.png',
-                              width: 100,
-                            ),
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        _button3 = true;
-                        playerSound();
-                        _escolha('tesoura');
-                        _jogoIniciado = true;
-                        _escolhaResult = 'tesoura';
-                        _isDancing = true;
-                        _cloudBoss = true;
-                        _cloudEmptyPlayerResult = AssetImage(
-                            '${pathImage}cloud_result/cloud_tesoura_result.png');
-                        _isAnimation = true;
-                        animationFalse();
-                        fimJogoIniciado();
-                      },
-                      child: _button1 || _button2 == true
-                          ? Opacity(
-                              opacity: 0.4,
-                              child: Image.asset(
-                                'assets/images/scissor.png',
-                              ),
-                            )
-                          : Image.asset(
-                              'assets/images/scissor.png',
-                              width: 100,
-                            ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+              ],
+            )),
           ],
         ),
       ),
