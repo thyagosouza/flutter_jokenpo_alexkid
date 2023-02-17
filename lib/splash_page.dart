@@ -27,7 +27,7 @@ class _SplashPageState extends State<SplashPage> {
   @override
   void initState() {
     setState(() {
-      //   player.play(AssetSource('sounds/title_screen.mp3'));
+         player.play(AssetSource('sounds/title_screen.mp3'));
     });
     super.initState();
   }
